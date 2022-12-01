@@ -15,4 +15,3 @@ def pokemon():
        if form.validate():
             search = form.search.data
     return render_template('pokemon.html', form=form)
-
