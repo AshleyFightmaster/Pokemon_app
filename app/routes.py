@@ -12,10 +12,7 @@ def home():
 def pokemon():
     form = Pokesearchform()
     if request.method == 'POST':
-       
-        if form.validate():
+       if form.validate():
             search = form.search.data
-
-            print(search)
     return render_template('pokemon.html', form=form)
 
