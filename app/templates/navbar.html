@@ -1,8 +1,21 @@
-<nav class="navbar bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <!-- <img src='' alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
-        Pokemon Battle
-      </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Pokemon Battle</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      {% if current_user.is_authenticated %}
+      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/logout">Logout</a>
+      <a class="nav-item nav-link" href="/team/create">Create a New Team</a>
+      <a class="nav-item nav-link" href="/view_team">View Team</a>
+      <a class="nav-item nav-link" href="/pokemon">Pokemon</a>
+      <a class="nav-item nav-link" href="#">Hello, {{ current_user.username.title() }}</a>
+      {% else %}
+      <a class="nav-item nav-link" href="/login">Login</a>
+      <a class="nav-item nav-link" href="/signup">Signup</a>
+      {% endif %}
     </div>
-  </nav>
+  </div>
+</nav>

@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, url_for
-
-from app.auth.forms import UserCreationForm 
-from app.auth.forms import LoginForm
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from app.auth.forms import UserCreationForm, LoginForm 
 from app.models import User
+from flask_login import login_user, logout_user, current_user
+from werkzeug.security import check_password_hash
+
 
 auth = Blueprint('auth', __name__, template_folder='auth_templates')
 
@@ -15,20 +16,41 @@ def signup():
             username = form.username.data
             email = form.email.data
             password = form.password.data
-
+            
+            # instantiate User from models
             user = User(username, email, password)
-
+            # add user to database
+            # db.session.add(user)
+            # db.session.commit(user)
             user.save_to_db()
-
             return redirect(url_for('auth.login'))
-
+            
     return render_template('signup.html', form=form)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    # form = LoginForm()
-    # if request.method == 'POST':
-    #     if form.validate():
-    #         username = form.username.data
-    #         password = form.password.data
-    return render_template('login.html')
+    form = LoginForm()
+    if request.method=='POST':
+        if form.validate():
+            username = form.username.data
+            password = form.password.data
+
+            # query user from our DB
+            
+            user = User.query.filter_by(username=username).first()
+            if user:
+                if check_password_hash(user.password, password):
+                    flash('Successfully logged in!', 'success')
+                    login_user(user)
+                    return redirect(url_for('pokemon_team.view_team'))
+                else: 
+                    flash('Invaild password.', 'danger')
+            else:
+                flash('User does not exist.', 'warning') 
+    return render_template('login.html', form=form)
+
+@auth.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
+

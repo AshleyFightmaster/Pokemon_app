@@ -1,63 +1,76 @@
 {% extends 'base.html' %}
 {% block content %}
-<form>
-    <!-- 2 column grid layout with text inputs for the first and last names -->
-    <div class="row mb-4">
-      <div class="col">
-        <div class="form-outline">
-          <input type="text" id="form3Example1" class="form-control" />
-          <label class="form-label" for="form3Example1">First name</label>
-        </div>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://c4.wallpaperflare.com/wallpaper/440/152/860/pokemon-backgrounds-for-widescreen-wallpaper-preview.jpg"
+          class="img-fluid" alt="Phone image">
       </div>
-      <div class="col">
-        <div class="form-outline">
-          <input type="text" id="form3Example2" class="form-control" />
-          <label class="form-label" for="form3Example2">Last name</label>
-        </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+        
+        <form method="POST">
+
+        {{form.hidden_tag()}}
+
+          <!-- username input  -->
+          <div class="form-outline mb-4">
+            {{form.username(class="form-control form-control-lg")}}
+            <label class="form-label" for="form1Example23">Username</label>
+          </div>
+
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            {{form.email(class="form-control form-control-lg")}}
+            <label class="form-label" for="form1Example23">Email</label>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            {{form.password(class="form-control form-control-lg")}}
+            <label class="form-label" for="form1Example23">Password</label>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-outline mb-4">
+            {{form.confirm_password(class="form-control form-control-lg")}}
+            <label class="form-label" for="form1Example23">Confirm Password</label>
+          </div>
+
+          <div class="d-flex justify-content-around align-items-center mb-4">
+
+            <!-- Checkbox -->
+            <div class="form-check">
+              <input class="form-check-input" style="color: #F94540" type="checkbox" value="" id="form1Example3" checked/>
+              <label class="form-check-label" for="form1Example3"> Remember me </label>
+            </div>
+            <a href="#!">Forgot password?</a>
+          </div>
+
+          <!-- Submit button -->
+          {{form.submit_btn(class="btn btn-danger btn-lg btn-block", value="Sign Up")}}
+
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+          </div>
+
+          <a class="btn btn-danger btn-lg btn-block" style="background-color: #920400" href="https://www.facebook.com/login/"
+            role="button">
+            <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
+          </a>
+          <a class="btn btn-danger btn-lg btn-block" style="background-color: #BA0803" href="https://twitter.com/i/flow/login"
+            role="button">
+            <i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
+
+            <!-- Login Button -->
+            <div class="divider d-flex align-items-center my-4">
+              <p class="text-center  mx-3 mb-0 text-muted">Already have an account?</p>
+              <a href="login.html">Login</a>
+            </div>
+        </form>
       </div>
     </div>
-  
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input type="email" id="form3Example3" class="form-control" />
-      <label class="form-label" for="form3Example3">Email address</label>
-    </div>
-  
-    <!-- Password input -->
-    <div class="form-outline mb-4">
-      <input type="password" id="form3Example4" class="form-control" />
-      <label class="form-label" for="form3Example4">Password</label>
-    </div>
-  
-    <!-- Checkbox -->
-    <div class="form-check d-flex justify-content-center mb-4">
-      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-      <label class="form-check-label" for="form2Example33">
-        Subscribe to our newsletter
-      </label>
-    </div>
-  
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
-  
-    <!-- Register buttons -->
-    <div class="text-center">
-      <p>or sign up with:</p>
-      <button type="button" class="btn btn-secondary btn-floating mx-1">
-        <i class="fab fa-facebook-f"></i>
-      </button>
-  
-      <button type="button" class="btn btn-secondary btn-floating mx-1">
-        <i class="fab fa-google"></i>
-      </button>
-  
-      <button type="button" class="btn btn-secondary btn-floating mx-1">
-        <i class="fab fa-twitter"></i>
-      </button>
-  
-      <button type="button" class="btn btn-secondary btn-floating mx-1">
-        <i class="fab fa-github"></i>
-      </button>
-    </div>
-  </form>
+  </div>
+</section>
 {% endblock %}
