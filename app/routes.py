@@ -3,11 +3,12 @@ from flask import render_template, request, redirect, url_for
 from app.forms import Pokesearchform
 import requests
 
-from app.models import Team
+from app.models import Team, User
 
 
 @app.route("/")
 def home():
+    users = User.query.all()
     return render_template('home.html')
 
 
@@ -42,14 +43,3 @@ def pokemon():
 
 
 
-@app.route('/pokemon2')
-def pokemon2():
-    # name = response.json()['forms'][0]['name']
-    # ability_name = response.json()['abilities'][0]['ability']['name']
-    # base_experience = response.json()['base_experience']
-    # sprite = response.json()['sprites']['front_default']
-    # attack_base_stat = response.json()['stats'][1]['base_stat']
-    # hp_base_stat = response.json()['stats'][0]['base_stat']
-    # defense_base_stat = response.json()['stats'][2]['base_stat']
-
-    return render_template('pokemon2.html')
