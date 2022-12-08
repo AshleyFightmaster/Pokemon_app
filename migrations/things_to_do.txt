@@ -1,5 +1,0 @@
-1. Have picture options on the create teams. maybe 5 options the user can choose from
-
-2. On the team_home page, have a spot to show the current_user's team seperate from other users teams
-
-3. 

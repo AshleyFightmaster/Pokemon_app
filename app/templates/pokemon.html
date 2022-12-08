@@ -7,11 +7,24 @@
             {{form.hidden_tag()}}
         {{form.search(class="form-control me-2", placeholder="Search")}}
         {{form.submit(class="btn btn-outline-warning", value = 'Search')}}
-        <img src="{{pokemon_info['sprite']}}" alt=""> 
-
-        
       </form>
     </div>
 </nav>
+{% if pokemon_info %}
+<div class="card m-3 mx-auto" style="width: 30rem;">
+    <img class="card-img-top" src="{{pokemon_info['sprite']}}"alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Name: {{pokemon_info['name']}}</h5>
+      <p class="card-text">Ability Name: {{pokemon_info['ability_name']}}</p>
+      <p class="card-text">Base Experience: {{pokemon_info['base_experience']}}</p>
+      <p class="card-text">Attack Base Stat: {{pokemon_info['attack_base_stat']}}</p>
+      <p class="card-text">HP Base Stat: {{pokemon_info['hp_base_stat']}}</p>
+      <p class="card-text">Defense Base Stat: {{pokemon_info['defense_base_stat']}}</p>
+      <a href="/catch{{pokemon.id}}" class="btn btn-primary">Catch!</a>
+    </div>
+  </div>
+  {% else %}
+  <p class="pokemon_search_message">Please search for a pokemon!</p>
+  {% endif%}
 
 {% endblock %}
