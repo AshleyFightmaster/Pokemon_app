@@ -29,7 +29,7 @@ class Team(db.Model):
         team_name = db.Column(db.String(50), nullable=False, unique=True)
         date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
         user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-        pokemon_id = db.Column(db.Integer, db.ForeignKey('pokemon.id'), nullable=False)
+        pokemon_name = db.Column(db.String(50), db.ForeignKey('pokemon.name'), nullable=False)
         
         def __init__(self, team_name, user_id):
                     self.team_name = team_name
@@ -48,8 +48,7 @@ class Team(db.Model):
                 db.session.commit()
 
 class Pokemon(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(50), unique = True, nullable=False)
+    name = db.Column(db.String(50), primary_key = True, unique = True, nullable=False)
     base_stat_hp =db.Column(db.Integer)
     base_stat_defense = db.Column(db.Integer)
     base_stat_attack = db.Column(db.Integer)
@@ -71,10 +70,10 @@ class Pokemon(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def catch(self, pokemon_id):
-        self.pokemon_id.append(pokemon_id)        
+    def catch(self, pokemon_name):
+        self.pokemon_name.append(pokemon_name)        
         db.session.commit()
 
-    def release(self, pokemon_id):
-        self.pokemon_id.remove(pokemon_id)
+    def release(self, pokemon_name):
+        self.pokemon_name.remove(pokemon_name)
         db.session.commit()

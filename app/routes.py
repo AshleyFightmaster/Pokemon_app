@@ -43,27 +43,28 @@ def pokemon():
             base_stat_defense = pokemon_info['defense_base_stat']
             
             pokemon = Pokemon(name, base_stat_hp, base_stat_defense, base_stat_attack, sprite, ability_name, base_experience)
-            pokemon.save_to_db()
+            poke = Pokemon.query.get(name)
+            team = Team.query.get(user_id, pokemon_name)
+            if poke:
+                flash("That pokemon has already been caught!")
+            elif current_user.id == team.user_id:
+                if team.pokemon_name == 5:
+                    flash("Your pokemon deck is full. Delete another pokemon to catch more.")
+            elif poke < 1:
+                flash(f'Successfully caught {pokemon.name.title()}!', 'succuss')
+                pokemon.save_to_db()
+            else:
+                flash('Check spelling.', 'warning')
         
             # response.raise_for_status()
             # if response.status_code != 204:
             #     return response.json()
             # elif response.status_code == 200
             # return redirect(url_for('pokemon2'))
-            
+
     return render_template('pokemon.html', form=form, pokemon_info=pokemon_info)
 
 
-@app.route('/catch/<int:pokemon_id>')
-@login_required
-def catch(pokemon_id):
-    pokemon = Pokemon.query.get(pokemon_id)
-    if pokemon:
-        catch(pokemon)
-        flash(f'Successfully caught {pokemon.name.title()}!', 'succuss')
-    else:
-        flash('Check spelling.', 'warning')
-    
-    return redirect(url_for('poketeam.view_team'))
+
     
     
