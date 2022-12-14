@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
         username = db.Column(db.String(50), nullable=False, unique=True)
         email = db.Column(db.String(50), nullable=False, unique=True)
         password = db.Column(db.String(250), nullable=False)
-        team = db.relationship('Team', backref='Trainer', lazy=True)
+        team = db.relationship('Team', backref='trainer', lazy=True)
 
         def __init__(self, username, email, password):
                 self.username = username
@@ -23,13 +23,20 @@ class User(db.Model, UserMixin):
             db.session.add(self)
             db.session.commit()
 
+        def catch(self, pokemon):
+            self.team.append(pokemon)        
+            db.session.commit()
+
+        def check_team(self):
+            return len(self.team) < 5    
+
 
 class Team(db.Model):
         id = db.Column(db.Integer, primary_key=True)  
         team_name = db.Column(db.String(50), nullable=False, unique=True)
         date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
         user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-        pokemon_name = db.Column(db.String(50), db.ForeignKey('pokemon.name'), nullable=False)
+        pokemon_name = db.Column(db.String(50), db.ForeignKey('pokemon.name'))
         
         def __init__(self, team_name, user_id):
                     self.team_name = team_name
@@ -70,9 +77,7 @@ class Pokemon(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def catch(self, pokemon_name):
-        self.pokemon_name.append(pokemon_name)        
-        db.session.commit()
+    
 
     def release(self, pokemon_name):
         self.pokemon_name.remove(pokemon_name)
