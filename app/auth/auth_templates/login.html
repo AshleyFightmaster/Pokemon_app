@@ -1,64 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-md-8 col-lg-7 col-xl-6">
-        <img src="https://c4.wallpaperflare.com/wallpaper/440/152/860/pokemon-backgrounds-for-widescreen-wallpaper-preview.jpg"
-          class="img-fluid" alt="Phone image">
-      </div>
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <h2 class="text-uppercase text-center mb-5">Pokemon Battle Login</h2>
-        
-        <form method="POST">
-
-        {{form.hidden_tag()}}
-
-          <!-- username input  -->
-          <div class="form-outline mb-4">
-            {{form.username(class="form-control form-control-lg")}}
-            <label class="form-label" for="form1Example23">Username</label>
-          </div>
-
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            {{form.password(class="form-control form-control-lg")}}
-            <label class="form-label" for="form1Example23">Password</label>
-          </div>
-
-          <div class="d-flex justify-content-around align-items-center mb-4">
-
-            <!-- Checkbox -->
-            <div class="form-check">
-              <input class="form-check-input" style="color: #F94540" type="checkbox" value="" id="form1Example3" checked/>
-              <label class="form-check-label" for="form1Example3"> Remember me </label>
+<section class="vh-100 bg-image"
+    style="background-image: url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700074466.jpg');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Battle Login</h2>
+  
+                <form method="POST">
+  
+                  {{ form.hidden_tag() }}
+  
+                  <div class="form-outline mb-4">
+                    {{ form.username(id="form3Example1cg", class='form-control form-control-lg', placeholder='Username') }}
+                  </div>
+  
+                  <div class="form-outline mb-4">
+                    {{ form.password(id="form3Example4cg", class="form-control form-control-lg", placeholder='Password')}}
+                  </div>
+  
+                  <div class="d-flex justify-content-center">
+                    {{ form.submit_btn(class="btn btn-outline-dark btn-info btn-lg", value='Login')}}
+                  </div>
+  
+                </form>
+  
+              </div>
             </div>
-            <a href="#!">Forgot password?</a>
           </div>
-
-          <!-- Submit button -->
-          {{form.submit_btn(class="btn btn-danger btn-lg btn-block", value="Login")}}
-
-          <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-          </div>
-
-          <a class="btn btn-danger btn-lg btn-block" style="background-color: #920400" href="https://www.facebook.com/login/"
-            role="button">
-            <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
-          </a>
-          <a class="btn btn-danger btn-lg btn-block" style="background-color: #BA0803" href="https://twitter.com/i/flow/login"
-            role="button">
-            <i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
-
-            <!-- Login Button -->
-            <div class="divider d-flex align-items-center my-4">
-              <p class="text-center  mx-3 mb-0 text-muted">Already have an account?</p>
-              <a href="login.html">Login</a>
-            </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 {% endblock %}

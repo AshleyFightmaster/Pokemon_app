@@ -3,11 +3,10 @@
 
 <nav class="navbar bg-light">
     <div class="container-fluid">
-        <form action="{{url_for('pokemon')}}" class="d-flex" method="POST">
-          {{form.hidden_tag()}}
+        <form action="{{url_for('pokemon_team.pokemon')}}" class="d-flex" method="POST">
+        {{form.hidden_tag()}}
         {{form.search(class="form-control me-2", placeholder="Search")}}
         {{form.submit(class="btn btn-outline-warning", value = 'Search')}}
-
       </form>
     </div>
 </nav>
@@ -21,7 +20,7 @@
       <p class="card-text">Attack Base Stat: {{pokemon_info['attack_base_stat']}}</p>
       <p class="card-text">HP Base Stat: {{pokemon_info['hp_base_stat']}}</p>
       <p class="card-text">Defense Base Stat: {{pokemon_info['defense_base_stat']}}</p>
-      <a href="{{url_for('catch_pokemon', poke_name=pokemon_info['name'])}}" class="btn btn-primary">Catch!</a>
+      <a href="{{url_for('pokemon_team.catch_pokemon', pokemon_name=pokemon_info['name'])}}" class="btn btn-primary">Catch!</a>
     </div>
   </div>
   {% else %}

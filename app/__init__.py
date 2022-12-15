@@ -6,7 +6,7 @@ from .models import db, User
 from flask_login import LoginManager
 
 from .auth.routes import auth
-from .poketeam.routes import poketeam
+from .pokedeck.routes import poke
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ app.config.from_object(Config)
 
 # register blueprints
 app.register_blueprint(auth)
-app.register_blueprint(poketeam)
+app.register_blueprint(poke)
 
 
 # initialize our database to work with our app
