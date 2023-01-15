@@ -28,10 +28,10 @@ class User(db.Model, UserMixin):
             db.session.commit()
 
         def check_team(self):
-            return len(self.pokes) < 5  
+            return len(self.pokes) <= 5  
 
         def release(self, pokes):
-            self.remove(pokes)
+            db.session.delete(pokes)
             db.session.commit()  
 
 

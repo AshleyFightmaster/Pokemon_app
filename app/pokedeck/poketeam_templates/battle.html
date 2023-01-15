@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='vh-100 bg-image' style="background-image: url('https://images.unsplash.com/photo-1610692567145-2c1fe6bf9c3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1544&q=80');">
+    {% if my_attack > attack %}
+    <p class="animate__animated animate__tada battle-text">Winner</p>
+    {% else %}
+    <p class="animate__animated animate__pulse battle-text">You Lost!</p>
+    {% endif %}
+</div>
+{% endblock %}

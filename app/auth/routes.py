@@ -42,7 +42,7 @@ def login():
                 if check_password_hash(user.password, password):
                     flash('Successfully logged in!', 'success')
                     login_user(user)
-                    return redirect(url_for('pokemon_team.view_deck'))
+                    return render_template('home.html')
                 else: 
                     flash('Invaild password.', 'danger')
             else:

@@ -1,21 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% block content %}
-{% for poke in pokemon %}
-<a class="card mx-auto m-5 text-decoration-none" style="width: 30rem;" href="/view_pokedeck/{{pokemon.id}}">
-    <img class="card-img-top" src="..." alt="Card image cap">
+<div style="background-image: linear-gradient(red, yellow);" >
+  <h1 style="text-align: center;">Your Poke Deck</h1>
+  {% for poke in pokes %}
+  {% if pokes %}
+  <div class="card mx-auto pokecards"  style="width: 30rem;">
+    <img class="card-img-top" src="{{poke['sprite']}}"alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
-</a>
-{% endfor %}
+      <h5 class="card-title">Name: {{poke['name']}}</h5>
+      <p class="card-text">Ability Name: {{poke['ability_name']}}</p>
+      <p class="card-text">Base Experience: {{poke['base_experience']}}</p>
+      <p class="card-text">Attack Base Stat: {{poke['base_stat_attack']}}</p>
+      <p class="card-text">HP Base Stat: {{poke['base_stat_hp']}}</p>
+      <p class="card-text">Defense Base Stat: {{poke['base_stat_defense']}}</p>
+      <a class='btn btn-outline-dark btn-danger btn- lg' href="/view_pokedeck/release/{{poke.name}}">Release</a>
+  </div>
+  {% endif %} 
+  {% endfor %}
+</div>
 {% endblock %}

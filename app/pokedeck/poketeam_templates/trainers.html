@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for trainer in trainers%}
+<div class="trainers">
+    <div class="card trainer-card" style="width: 18rem;">
+        <div class="card-body">
+        <p class="card-text" style="text-align: center;">Trainer: {{trainer.username.title()}}</p>
+        {% if current_user.id != trainer.id %}
+        <a href="/battle/{{trainer.id}}" class="btn btn-danger">Battle!</a>
+        {% endif %}    
+    </div>
+    </div>
+</div>
+
+{% endfor%}
+{% endblock %}
