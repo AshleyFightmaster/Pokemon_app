@@ -22,15 +22,18 @@ def pokemon():
             search = form.search.data
             url = f'https://pokeapi.co/api/v2/pokemon/{search}'
             response = requests.get(url)
-            pokemon_info ={
-                'name' : response.json()['forms'][0]['name'],
-                'ability_name' : response.json()['abilities'][0]['ability']['name'],
-                "base_experience": response.json()['base_experience'],
-                "sprite" : response.json()['sprites']['other']['dream_world']['front_default'],
-                "attack_base_stat" : response.json()['stats'][1]['base_stat'],
-                "hp_base_stat": response.json()['stats'][0]['base_stat'],
-                "defense_base_stat" : response.json()['stats'][2]['base_stat']
-            } 
+            if response.ok == True:
+                pokemon_info ={
+                    'name' : response.json()['forms'][0]['name'],
+                    'ability_name' : response.json()['abilities'][0]['ability']['name'],
+                    "base_experience": response.json()['base_experience'],
+                    "sprite" : response.json()['sprites']['other']['dream_world']['front_default'],
+                    "attack_base_stat" : response.json()['stats'][1]['base_stat'],
+                    "hp_base_stat": response.json()['stats'][0]['base_stat'],
+                    "defense_base_stat" : response.json()['stats'][2]['base_stat']
+                } 
+            else:
+                flash("That Pokemon does not exist. Please check spelling!", 'danger')
     return render_template('pokemon.html', form=form, pokemon_info=pokemon_info)
 
 @poke.route('/catch_pokemon/<pokemon_name>')
